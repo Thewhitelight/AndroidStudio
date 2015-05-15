@@ -16,6 +16,30 @@ gen/
 .gradle/
 build/
 
+#Android Stuido
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/captures
+
+
+# Eclipse project files
+.classpath
+.project
+
+# Intellij project files
+*.iml
+*.ipr
+*.iws
+.idea/
+out/
+**/build/
+production/
+signing.properties
+
+
 # Local configuration file (sdk path, etc)
 local.properties
 
