@@ -26,7 +26,18 @@ public class MyApplication extends Application {
 
     public void initImageLoader(Context context) {
         File cacheDir = StorageUtils.getOwnCacheDirectory(context, "ExcursionDemo/Cache");
-        ImageLoaderConfiguration configuration = new ImageLoaderConfiguration.Builder(context).memoryCacheExtraOptions(480, 800).threadPriority(3).denyCacheImageMultipleSizesInMemory().diskCacheFileNameGenerator(new Md5FileNameGenerator()).memoryCache(new UsingFreqLimitedMemoryCache(2 * 1024 * 1024)).tasksProcessingOrder(QueueProcessingType.FIFO).diskCache(new UnlimitedDiskCache(cacheDir)).imageDownloader(new BaseImageDownloader(context, 5 * 1000, 30 * 1000)).memoryCacheSize(2 * 1024 * 1024).diskCacheSize(50 * 1024 * 1024).build();
+        ImageLoaderConfiguration configuration = new ImageLoaderConfiguration.Builder(context).
+                memoryCacheExtraOptions(480, 800).
+                threadPriority(3).
+                denyCacheImageMultipleSizesInMemory().
+                diskCacheFileNameGenerator(new Md5FileNameGenerator()).
+                memoryCache(new UsingFreqLimitedMemoryCache(2 * 1024 * 1024)).
+                tasksProcessingOrder(QueueProcessingType.FIFO).
+                diskCache(new UnlimitedDiskCache(cacheDir)).
+                imageDownloader(new BaseImageDownloader(context, 5 * 1000, 30 * 1000)).
+                memoryCacheSize(2 * 1024 * 1024).
+                diskCacheSize(50 * 1024 * 1024).
+                build();
         ImageLoader.getInstance().init(configuration);
     }
 }

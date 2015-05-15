@@ -87,16 +87,13 @@ public class DrawableActivity extends ActionBarActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            if (convertView == null) {
+            if (convertView == null)
                 convertView = mInflater.inflate(R.layout.listview_item, parent, false);
-            }
             ImageView img = (ImageView) convertView.findViewById(R.id.imageView);
-            if (imgUrl == null) {
-                Log.e("DrawableActivity", "imgUrlÎª¿Õ");
-            }
+            if (imgUrl == null)
+                Log.e("DrawableActivity", "imgUrl is null");
             ImageLoader.getInstance().displayImage(imgUrl[position], img, options);
             return convertView;
         }
     }
-
 }

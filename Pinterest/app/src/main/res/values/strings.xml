@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Pinterest</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="borderTop">BorderTop</string>
+    <string name="borderBottom">borderBottom</string>
+    <string name="ImagesUrl">ImagesUrl</string>
+</resources>
