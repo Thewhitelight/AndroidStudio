@@ -26,9 +26,15 @@ public class ImageLoader {
         int cacheSize = maxMemory / 8;
         // 设置图片缓存大小为程序最大可用内存的1/8
         mMemoryCache = new LruCache<String, Bitmap>(cacheSize) {
+            /**
+             * 衡量每张图片的大小而不是返回图片数量
+             * @param key
+             * @param bitmap
+             * @return
+             */
             @Override
             protected int sizeOf(String key, Bitmap bitmap) {
-                return bitmap.getByteCount();
+                return bitmap.getByteCount() / 1024;
             }
         };
     }
@@ -67,8 +73,7 @@ public class ImageLoader {
         return mMemoryCache.get(key);
     }
 
-    public static int calculateInSampleSize(BitmapFactory.Options options,
-                                            int reqWidth) {
+    public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth) {
         // 源图片的宽度
         final int width = options.outWidth;
         int inSampleSize = 1;
@@ -80,8 +85,7 @@ public class ImageLoader {
         return inSampleSize;
     }
 
-    public static Bitmap decodeSampledBitmapFromResource(String pathName,
-                                                         int reqWidth) {
+    public static Bitmap decodeSampledBitmapFromResource(String pathName, int reqWidth) {
         // 第一次解析将inJustDecodeBounds设置为true，来获取图片大小
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;

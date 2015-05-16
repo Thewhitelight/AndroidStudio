@@ -401,7 +401,7 @@ public class MyScrollView extends ScrollView implements View.OnTouchListener {
                 con.setConnectTimeout(5 * 1000);
                 con.setReadTimeout(15 * 1000);
                 con.setDoInput(true);
-                con.setDoOutput(true);
+                //con.setDoOutput(true);
                 bis = new BufferedInputStream(con.getInputStream());
                 imageFile = new File(getImagePath(imageUrl));
                 fos = new FileOutputStream(imageFile);
