@@ -179,7 +179,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 canvas.drawLine(x - width / 2, y - height / 2, x + width / 2, y - height / 2, paint);
                 canvas.drawLine(x + width / 2, y - height / 2, x + width / 2, y + height / 2, paint);
                 canvas.drawLine(x - width / 2, y + height / 2, x + width / 2, y + height / 2, paint);
-                Bitmap ageBitmap = buildAgeBitmap(age, "male".equals(gender));
+                Bitmap ageBitmap = buildAgeBitmap(age, "Male".equals(gender));
                 int ageWith = ageBitmap.getWidth();
                 int ageHeight = ageBitmap.getHeight();
                 if (bitmap.getWidth() < imageView.getWidth() && bitmap.getHeight() < imageView.getHeight()) {
