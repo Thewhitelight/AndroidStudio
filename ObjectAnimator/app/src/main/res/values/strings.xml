@@ -2,5 +2,9 @@
     <string name="app_name">ObjectAnimator</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="value">ValueAnimation</string>
+    <string name="object">ObjectAnimation</string>
+    <string name="action_settings">setting</string>
+    <string name="title_activity_value_animation_advanced">ValueAnimationAdvanced</string>
+    <string name="title_activity_object_animation_activity">ObjectAnimationActivity</string>
 </resources>

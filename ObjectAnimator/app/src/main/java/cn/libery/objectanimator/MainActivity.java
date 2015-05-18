@@ -4,13 +4,13 @@ import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AnimationSet;
 import android.widget.TextView;
 
 
@@ -44,7 +44,12 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.value) {
+            startActivity(new Intent(this, ValueAnimationActivity.class));
+            return true;
+        }
+        if (id == R.id.object) {
+            startActivity(new Intent(this, ObjectAnimationActivity.class));
             return true;
         }
 
