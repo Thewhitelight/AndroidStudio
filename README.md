@@ -1,3 +1,5 @@
 # AndroidStudio
-:octocat: /play secret
+
+:octocat: 
+
 AndroidDemo
