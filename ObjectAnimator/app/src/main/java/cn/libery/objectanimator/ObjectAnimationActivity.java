@@ -1,13 +1,18 @@
 package cn.libery.objectanimator;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class ObjectAnimationActivity extends ActionBarActivity {
+    private ObjectAnimationView view;
+    // private ObjectAnimator objectAnimator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +20,19 @@ public class ObjectAnimationActivity extends ActionBarActivity {
         setContentView(R.layout.activity_object_animtaion_activivty);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
+        view = (ObjectAnimationView) findViewById(R.id.view);
+        // view.setColor("#FF0000");
+        //objectAnimator = ObjectAnimator.ofObject(view, "color", new ColorEvaluator(), view.getColor(), "#0000FF");
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AnimatorSet animatorSet = new AnimatorSet();
+                animatorSet.play(view.valueAnimator).with(view.objectAnimator);
+                animatorSet.setDuration(5000);
+                animatorSet.start();
+            }
+        });
     }
 
     @Override
@@ -35,7 +53,7 @@ public class ObjectAnimationActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-        if (id == R.id.home) {
+        if (id == android.R.id.home) {
             finish();
             return true;
         }

@@ -195,10 +195,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         }
     }
 
-    private Bitmap buildAgeBitmap(int age, boolean ismale) {
+    private Bitmap buildAgeBitmap(int age, boolean isMale) {
         TextView tv = (TextView) frame.findViewById(R.id.tv_age_gender);
         tv.setText(age + " ");
-        if (ismale) {
+        if (isMale) {
             tv.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.male), null, null, null);
         } else {
             tv.setCompoundDrawablesWithIntrinsicBounds(getResources().getDrawable(R.drawable.female), null, null, null);

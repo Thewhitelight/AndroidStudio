@@ -12,9 +12,10 @@ import android.view.View;
  * Created by SZQ on 2015/5/18.
  */
 public class ValueAnimationView extends View {
-    private static final float RADIUS = 50f;
-    private Point currentPoint;
-    private Paint mPaint;
+    protected static final float RADIUS = 50f;
+    protected Point currentPoint;
+    protected Paint mPaint;
+    protected ValueAnimator valueAnimator;
 
     public ValueAnimationView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -43,7 +44,7 @@ public class ValueAnimationView extends View {
     private void startAnimation() {
         Point startPoint = new Point(RADIUS, RADIUS);
         Point endPoint = new Point(getWidth() - RADIUS, getHeight() - RADIUS);
-        ValueAnimator valueAnimator = ValueAnimator.ofObject(new PointEvaluator(), startPoint, endPoint);
+        valueAnimator = ValueAnimator.ofObject(new PointEvaluator(), startPoint, endPoint);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {

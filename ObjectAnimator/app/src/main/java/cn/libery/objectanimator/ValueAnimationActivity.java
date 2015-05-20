@@ -35,7 +35,7 @@ public class ValueAnimationActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-        if (id == R.id.home) {
+        if (id == android.R.id.home) {
             finish();
             return true;
         }

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HandlerThread</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">StartThread</string>
+    <string name="title_activity_thread">ThreadActivity</string>
+</resources>
