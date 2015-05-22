@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
 /**
  * Created by SZQ on 2015/5/21.
@@ -45,11 +47,15 @@ public class MyAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(R.layout.lv_item, parent, false);
         }
         SimpleDraweeView draweeView = (SimpleDraweeView) convertView.findViewById(R.id.image);
-        DraweeController draweeController1 = Fresco.newDraweeControllerBuilder().
-                setUri(Uri.parse(imgUrls[position])).
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(imgUrls[position]))
+                .setProgressiveRenderingEnabled(true)
+                .build();
+        DraweeController draweeController = Fresco.newDraweeControllerBuilder().
                 setAutoPlayAnimations(true).
+                setImageRequest(request).
                 build();
-        draweeView.setController(draweeController1);
+        draweeView.setAspectRatio(1.33f);
+        draweeView.setController(draweeController);
         //draweeView.setImageURI(Uri.parse(imgUrls[position]));//加载非GIF图片
         return convertView;
     }

@@ -122,5 +122,9 @@ public class imgUrls {
             "http://s1.dwstatic.com/group1/M00/E9/7E/91db6dd48888178736b388fd0216e083.gif",
             "http://s1.dwstatic.com/group1/M00/F5/B9/f880d450a7d93ce36a030ae9156eca6b.gif",
             "http://s1.dwstatic.com/group1/M00/E6/3A/a679ad08758f3258feef6e095c1ff64e.gif",
+            "http://i.imgur.com/nvwdx16.jpg",
+            "http://i.imgur.com/IYnHg2vl.jpg",
+            "http://i.imgur.com/STBLfjY.jpg",
+            "http://i.imgur.com/dh5TTU1.jpg"
     };
 }
