@@ -1,6 +1,7 @@
 package cn.libery.how_old;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import com.facepp.error.FaceppParseException;
 import com.facepp.http.HttpRequests;
@@ -35,6 +36,7 @@ public class Detect {
                     byte[] bytes = stream.toByteArray();
                     PostParameters postParameters = new PostParameters();
                     postParameters.setImg(bytes);
+                    Log.i("PostParameters",postParameters.toString());
                     JSONObject jsonObject = requests.detectionDetect(postParameters);
                     if (callBack != null) {
                         callBack.success(jsonObject);
