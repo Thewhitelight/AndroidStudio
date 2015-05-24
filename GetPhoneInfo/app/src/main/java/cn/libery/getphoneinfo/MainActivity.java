@@ -4,8 +4,11 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.SystemClock;
+import android.renderscript.RenderScript;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -15,14 +18,33 @@ import java.util.Date;
 
 
 public class MainActivity extends ActionBarActivity {
-    private TextView tv_sns;
+    private TextView tv_sns, tv_real_time;
+    private ScreenReceiver screenReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        screenReceiver = new ScreenReceiver();
+        screenReceiver.registerScreenReceiver(this);
         tv_sns = (TextView) findViewById(R.id.tv_sns);
+        tv_real_time = (TextView) findViewById(R.id.tv_real_time);
         tv_sns.setText(getSmsInPhone());
+        long systemClock = SystemClock.uptimeMillis();//System.nanoTime();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Date d = new Date(systemClock);
+        String data = format.format(d);
+        tv_real_time.setText("开机时长:" + data);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 
     private String getSmsInPhone() {
@@ -78,6 +100,11 @@ public class MainActivity extends ActionBarActivity {
         return stringBuilder.toString();
     }
 
+    @Override
+    protected void onDestroy() {
+        screenReceiver.unregisterScreenReceiver(this);
+        super.onDestroy();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
