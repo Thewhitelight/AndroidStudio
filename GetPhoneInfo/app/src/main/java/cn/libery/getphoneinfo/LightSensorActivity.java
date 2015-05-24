@@ -98,7 +98,7 @@ public class LightSensorActivity extends ActionBarActivity implements SensorEven
     protected void onPause() {
         super.onPause();
         sm.unregisterListener(this);
-        isGetVoiceRun=false;
+        isGetVoiceRun = false;
     }
 
     public void getNoiseLevel() {
