@@ -25,6 +25,7 @@ public class LightSensorActivity extends ActionBarActivity implements SensorEven
     private AudioRecord mAudioRecord;
     private boolean isGetVoiceRun;
     private Object mLock;
+    private Thread mtThread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +98,7 @@ public class LightSensorActivity extends ActionBarActivity implements SensorEven
     protected void onPause() {
         super.onPause();
         sm.unregisterListener(this);
+        isGetVoiceRun=false;
     }
 
     public void getNoiseLevel() {
@@ -113,7 +115,7 @@ public class LightSensorActivity extends ActionBarActivity implements SensorEven
         }
         isGetVoiceRun = true;
 
-        new Thread(new Runnable() {
+        mtThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 mAudioRecord.startRecording();
@@ -148,6 +150,7 @@ public class LightSensorActivity extends ActionBarActivity implements SensorEven
                 mAudioRecord.release();
                 mAudioRecord = null;
             }
-        }).start();
+        });
+        mtThread.start();
     }
 }
