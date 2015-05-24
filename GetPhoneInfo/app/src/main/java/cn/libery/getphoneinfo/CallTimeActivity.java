@@ -25,35 +25,9 @@ public class CallTimeActivity extends ActionBarActivity {
     }
 
     private void getCallTimeInPhone() {
-       /* ContentResolver contentResolver = getContentResolver();
-        Cursor cursor;
-        cursor = contentResolver.query(CallLog.Calls.CONTENT_URI,
-                new String[]{CallLog.Calls.DURATION, CallLog.Calls.TYPE, CallLog.Calls.DATE},
-                null, null, CallLog.Calls.DEFAULT_SORT_ORDER);
-        long toTime = 0L;
-        long fromTime = 0L;
-        boolean hasRecord = cursor.moveToFirst();
-        int count = 0;
-        while (hasRecord) {
-            int type = cursor.getInt(cursor.getColumnIndex(CallLog.Calls.TYPE));
-            long duration = cursor.getLong(cursor.getColumnIndex(CallLog.Calls.DURATION));
-            switch (type) {
-                case CallLog.Calls.INCOMING_TYPE:
-                    fromTime += duration;
-                    break;
-                case CallLog.Calls.OUTGOING_TYPE:
-                    toTime += duration;
-                default:
-                    break;
-            }
-            count++;
-            hasRecord = cursor.moveToNext();
-            tv_callTime.setText("共计 " + count + "次通话 . 总通话时长 " + (fromTime + toTime) + "秒. 其中接听 " + fromTime + " 秒, 拔打 "
-                    + toTime + " 秒.");
-        }*/
         StringBuilder stringBuilder = new StringBuilder();
         Cursor cursor = getContentResolver().query(CallLog.Calls.CONTENT_URI,
-                null, null, null, CallLog.Calls.DATE+" desc");
+                null, null, null, CallLog.Calls.DATE + " desc");
         if (cursor.moveToFirst()) {
             do {
                 // CallsLog calls = new CallsLog();
