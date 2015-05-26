@@ -89,8 +89,15 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btn_camera:
 
-                Intent intent_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent_camera, CAMERA);
+               // Intent intent_camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+               // startActivityForResult(intent_camera, CAMERA);
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                intent.putExtra("camerasensortype", 2); // 调用前置摄像头
+                intent.putExtra("autofocus", true); // 自动对焦
+                intent.putExtra("fullScreen", false); // 全屏
+                intent.putExtra("showActionIcons", false);
+                startActivityForResult(intent, CAMERA);
+
                 break;
             case R.id.btn_photo:
 
