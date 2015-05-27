@@ -24,7 +24,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             public void run() {
                 if (!ServiceUtil.isServiceRunning(mContext,
                         Constants.SERVICE)) {
-                    ServiceUtil.invokeTimerPOIService(mContext);
+                    ServiceUtil.invokeAlarmService(mContext);
                 }
             }
         }, Constants.RECEIVER_TIME);
