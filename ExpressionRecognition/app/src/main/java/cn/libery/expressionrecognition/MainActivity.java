@@ -25,7 +25,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 btn_facedata(v);//调用一登系统界面
-                //startActivity(new Intent(MainActivity.this, GetFaceInfoActivity.class));//调用应用扫描界面
+                // startActivity(new Intent(MainActivity.this, GetFaceInfoActivity.class));//调用应用扫描界面
             }
         });
     }
