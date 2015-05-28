@@ -28,6 +28,6 @@ public class AlarmReceiver extends BroadcastReceiver {
                 }
             }
         }, Constants.RECEIVER_TIME);
-        throw new UnsupportedOperationException("Not yet implemented");
+        //throw new UnsupportedOperationException("Not yet implemented");
     }
 }
