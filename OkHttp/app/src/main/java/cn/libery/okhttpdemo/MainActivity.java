@@ -9,17 +9,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+
+import java.io.IOException;
 
 
 public class MainActivity extends ActionBarActivity {
     private TextView tv;
     private OkHttpClient okHttpClient;
-    private String url = "https://raw.githubusercontent.com/square/okhttp/master/samples/guide/src/main/java/com/squareup/okhttp/guide/GetExample.java";//"http://publicobject.com/helloworld.txt";
-    private static String str;
+    private String url = "http://www.baidu.com";//"https://raw.githubusercontent.com/square/okhttp/master/samples/guide/src/main/java/com/squareup/okhttp/guide/GetExample.java";//"http://publicobject.com/helloworld.txt";
     private Handler handler;
+    private String str;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +43,6 @@ public class MainActivity extends ActionBarActivity {
                 }
             }
         }).start();
-
-
         handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -50,12 +51,26 @@ public class MainActivity extends ActionBarActivity {
                 tv.setText(str);
             }
         };
+        /**
+         * 异步Get调用
+         */
+      /*  try {
+            getResponseGet(url);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
     }
 
-
+    /**
+     * 同步Get
+     *
+     * @param url
+     * @return
+     * @throws Exception
+     */
     private String getResponse(String url) throws Exception {
         Request request = new Request.Builder().url(url).build();
-        Response response = null;
+        Response response;
 
         response = okHttpClient.newCall(request).execute();
 
@@ -66,6 +81,36 @@ public class MainActivity extends ActionBarActivity {
         } else {
             return ("Unexpected code " + response);
         }
+    }
+
+    /**
+     * 异步Get
+     *
+     * @param url
+     * @return
+     * @throws Exception
+     */
+    private void getResponseGet(String url) throws Exception {
+        Request request = new Request.Builder().url(url).build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+                Log.i(request.toString(), e.toString());
+            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+                if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+                final String s = response.body().string();
+                tv.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        tv.setText(s);
+                    }
+                });
+            }
+        });
+
     }
 
     @Override
@@ -89,4 +134,5 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
