@@ -6,8 +6,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import java.util.Map;
-
 
 public class MainActivity extends ActionBarActivity implements OnRowViewClickListener {
     private RowView rowView;
