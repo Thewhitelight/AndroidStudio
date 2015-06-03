@@ -29,6 +29,7 @@ public class UploadActivity extends ActionBarActivity implements View.OnClickLis
     private String filePath;
     private static final int PHOTO_CODE = 1;
     private static final int CAMAEA_CODE = 2;
+    private boolean imgIsClick = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,28 +73,28 @@ public class UploadActivity extends ActionBarActivity implements View.OnClickLis
         int id = v.getId();
         switch (id) {
             case R.id.image_upload:
+                imgIsClick = true;
                 Intent intent = new Intent(
                         Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(intent, PHOTO_CODE);
                 break;
             case R.id.btn_upload:
-                if (tv.getText().toString().trim().equals("")) {
-                    Toast.makeText(getApplication(), "请选择图片", Toast.LENGTH_SHORT).show();
-                }
-                Http http = new Http().getInstance();
-                http.postHttpImage("9sdafggfef135dexf", Constant.IMAGE_HOST, filePath, new Callback() {
-                    @Override
-                    public void onFailure(Request request, IOException e) {
-                        Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-                    }
+                if (imgIsClick) {
+                    Http http = new Http().getInstance();
+                    http.postHttpImage("9sdafggfef135dexf", Constant.IMAGE_HOST, filePath, new Callback() {
+                        @Override
+                        public void onFailure(Request request, IOException e) {
+                            Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+                        }
 
-                    @Override
-                    public void onResponse(Response response) throws IOException {
-                        //Toast.makeText(getApplicationContext(), "SUCCESSFUL", Toast.LENGTH_SHORT).show();
-                        Log.i("onResponse", response.toString());
-                    }
-                });
+                        @Override
+                        public void onResponse(Response response) throws IOException {
+                            //Toast.makeText(getApplicationContext(), "SUCCESSFUL", Toast.LENGTH_SHORT).show();
+                            Log.i("onResponse", response.toString());
+                        }
+                    });
+                } else Toast.makeText(getApplicationContext(), "请选择图片", Toast.LENGTH_SHORT).show();
                 break;
 
         }
