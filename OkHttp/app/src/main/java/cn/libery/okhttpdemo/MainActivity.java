@@ -1,5 +1,6 @@
 package cn.libery.okhttpdemo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -129,6 +130,11 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this, IpActivity.class));
+            return true;
+        }
+        if (id == R.id.action_upload) {
+            startActivity(new Intent(this, UploadActivity.class));
             return true;
         }
 
