@@ -45,7 +45,7 @@ public class MainActivity extends ActionBarActivity {
         tintManager.setStatusBarTintColor(color);
         if (isFlyme()) {
             FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
-            layoutParams.setMargins(0, 70, 0, 0);
+            layoutParams.setMargins(0, 50, 0, 0);
             drawerLayout.setLayoutParams(layoutParams);
 
         }
