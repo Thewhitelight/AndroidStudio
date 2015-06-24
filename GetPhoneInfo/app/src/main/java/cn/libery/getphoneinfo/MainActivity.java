@@ -4,11 +4,9 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.SystemClock;
-import android.renderscript.RenderScript;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.SystemClock;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -31,7 +29,7 @@ public class MainActivity extends ActionBarActivity {
         tv_real_time = (TextView) findViewById(R.id.tv_real_time);
         tv_sns.setText(getSmsInPhone());
         long systemClock = SystemClock.uptimeMillis();//System.nanoTime();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date d = new Date(systemClock);
         String data = format.format(d);
         tv_real_time.setText("开机时长:" + data);
@@ -70,7 +68,7 @@ public class MainActivity extends ActionBarActivity {
                     phoneNumber = cursor.getString(phoneNumberColumn);
                     body = cursor.getString(bodyColumn);
                     SimpleDateFormat dateFormat = new SimpleDateFormat(
-                            "yyyy-MM-dd hh:mm:ss");
+                            "yyyy-MM-dd HH:mm:ss");
                     Date d = new Date(Long.parseLong(cursor.getString(dateColumn)));
                     date = dateFormat.format(d);
                     int typeId = cursor.getInt(typeColumn);
