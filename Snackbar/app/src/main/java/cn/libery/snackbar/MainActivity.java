@@ -46,10 +46,16 @@ public class MainActivity extends ActionBarActivity {
      */
     public void onClicked(View v) {
         if (R.id.btn == v.getId()) {
-            Toast.makeText(getApplicationContext(), "已点击", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Clicked", Toast.LENGTH_LONG).show();
         }
     }
 
+    /**
+     * has是否有点击事件
+     *
+     * @param text
+     * @param has
+     */
     public void showSnackbar(String text, boolean has) {
         view = getLayoutInflater().inflate(R.layout.snackbar, null);
         popupWindow = new PopupWindow(view, RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT, true);
@@ -62,7 +68,8 @@ public class MainActivity extends ActionBarActivity {
             btn_sb.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getApplicationContext(), "已点击", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "UNDO", Toast.LENGTH_LONG).show();
+                    tv.setText("UNDO");
                     popupWindow.dismiss();
                 }
             });
