@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ScaleImageView</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">PhotoView</string>
+    <string name="photo_view_setting">Subsampling Scale Image View</string>
+    <string name="title_activity_photo_view">PhotoViewActivity</string>
+</resources>
