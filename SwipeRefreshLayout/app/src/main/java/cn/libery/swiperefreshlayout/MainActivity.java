@@ -88,17 +88,6 @@ public class MainActivity extends ActionBarActivity implements OnRefreshListener
 
     @Override
     public void onLoad() {
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                for (int i = 0; i < 11; i++) {
-//                    list.add("More Item" + list.size());
-//                }
-//                adapter.notifyDataSetChanged();
-//                swipeRefreshLayout.setLoading(false);
-//            }
-//        }, 2000);
-
 
         Toast.makeText(MainActivity.this, "loading", Toast.LENGTH_SHORT).show();
 
