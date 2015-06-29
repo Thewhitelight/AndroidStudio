@@ -1,5 +1,6 @@
 package cn.libery.swiperefreshlayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -7,19 +8,19 @@ import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 
 public class MainActivity extends ActionBarActivity implements OnRefreshListener, SwipeLayout.OnLoadListener {
     private SwipeLayout swipeRefreshLayout;
     private ListView listView;
-    private List<String> list;
-    private ArrayAdapter<String> adapter;
+    private String[] imgUrls;
+    private FrescoAdapter adapter;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -37,26 +38,29 @@ public class MainActivity extends ActionBarActivity implements OnRefreshListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Fresco.initialize(this);
+        imgUrls = ImgUrls.imgUrls;
         swipeRefreshLayout = (SwipeLayout) findViewById(R.id.refresh_layout);
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
                 android.R.color.holo_orange_light, android.R.color.holo_red_light);
         listView = (ListView) findViewById(R.id.listView);
         swipeRefreshLayout.setFooterView(this, listView, R.layout.listview_footer);
-        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, android.R.id.text1, getData());
+        adapter = new FrescoAdapter(this, imgUrls);
 
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setOnLoadListener(this);
         listView.setAdapter(adapter);
-
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent();
+                intent.putExtra("position", position);
+                intent.setClass(getApplicationContext(), ViewPagerActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    private List getData() {
-        list = new ArrayList<>();
-        for (int i = 0; i < 21; i++) {
-            list.add("Item" + i);
-        }
-        return list;
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -82,7 +86,7 @@ public class MainActivity extends ActionBarActivity implements OnRefreshListener
 
     @Override
     public void onRefresh() {
-        list.add(0, "New Item");
+        ImgUrls.imgUrls[0] = "http://imgsrc.baidu.com/forum/w%3D580%3B/sign=7c239eaf84d6277fe912323018031f30/21a4462309f7905263004d2a0ff3d7ca7bcbd583.jpg";
         handler.sendEmptyMessageDelayed(0, 4000);
     }
 
@@ -95,9 +99,7 @@ public class MainActivity extends ActionBarActivity implements OnRefreshListener
 
             @Override
             public void run() {
-                for (int i = 0; i < 11; i++) {
-                    list.add("More Item" + list.size());
-                }
+                ImgUrls.imgUrls[ImgUrls.imgUrls.length - 1] = "http://imgsrc.baidu.com/forum/w%3D580%3B/sign=be4c642c7ecb0a4685228b315b58f424/cb8065380cd79123256212a2a8345982b3b78062.jpg";
                 adapter.notifyDataSetChanged();
                 swipeRefreshLayout.setLoading(false);
             }

@@ -125,7 +125,6 @@ public class SwipeLayout extends SwipeRefreshLayout implements AbsListView.OnScr
         if (mOnLoadListener != null) {
             // …Ë÷√◊¥Ã¨
             setLoading(true);
-            //
             mOnLoadListener.onLoad();
         }
     }
