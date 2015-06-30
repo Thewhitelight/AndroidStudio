@@ -56,7 +56,7 @@ public class FrescoAdapter extends BaseAdapter {
                 build();
         draweeView.setAspectRatio(1.33f);
         draweeView.setController(draweeController);
-        //draweeView.setImageURI(Uri.parse(imgUrls[position]));//º”‘ÿ∑«GIFÕº∆¨
+        //draweeView.setImageURI(Uri.parse(imgUrls[position]));//not gif
         return convertView;
     }
 }
