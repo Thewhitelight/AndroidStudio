@@ -37,9 +37,9 @@ public class MainActivity extends ActionBarActivity {
                         int count = view.getChildCount();
                         for (int i = 0; i < count; i++) {
                             TextView tv = (TextView) view.getChildAt(i).findViewById(R.id.tv);
-                            if (tv.getTag() == "1") {
+                            if (tv.getTag() == "true") {
                                 tv.setText("ScrollStateListView");
-                                tv.setTag("0");
+                                tv.setTag("false");
                             }
                         }
                         if (view.getLastVisiblePosition() == view.getCount() - 1) {

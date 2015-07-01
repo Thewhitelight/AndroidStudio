@@ -53,9 +53,9 @@ public class ListViewAdapter extends BaseAdapter {
         }
         if (!scrollState) {
             viewHolder.tv.setText(list.get(position).toString());
-            viewHolder.tv.setTag("0");
+            viewHolder.tv.setTag("false");
         } else {
-            viewHolder.tv.setTag("1");
+            viewHolder.tv.setTag("true");
             viewHolder.tv.setText("Loading");
         }
         return convertView;
