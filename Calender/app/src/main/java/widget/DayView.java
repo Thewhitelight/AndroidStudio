@@ -43,6 +43,8 @@ class DayView extends CheckedTextView {
     private boolean isInRange = true;
     private boolean showOtherDates = false;
     private boolean isDecoratedDisabled = false;
+    private LunarCalendar lunarCalendar;
+    private String lunarDate;
 
     public DayView(Context context, CalendarDay day) {
         super(context);
@@ -62,7 +64,9 @@ class DayView extends CheckedTextView {
 
     public void setDay(CalendarDay date) {
         this.date = date;
-        setText(getLabel());
+        lunarCalendar = new LunarCalendar();
+        lunarDate = "\n" + lunarCalendar.getLunarDate(date.getYear(), Integer.valueOf(date.getMonth() + 1), date.getDay(), false);
+        setText(getLabel());// + lunarDate);//LunarCalendar
     }
 
     /**
@@ -83,13 +87,16 @@ class DayView extends CheckedTextView {
                 newLabel.setSpan(span, 0, newLabel.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
         }
-        setText(newLabel);
+        setText(newLabel);// + lunarDate);//LunarCalendar
     }
 
     public
     @NonNull
     String getLabel() {
-        return formatter.format(date);
+        String s = formatter.format(date);
+        StringBuilder sb = new StringBuilder(s);
+        sb.append(lunarDate);
+        return sb.toString();
     }
 
     public void setSelectionColor(int color) {
@@ -200,11 +207,11 @@ class DayView extends CheckedTextView {
             for (DayViewFacade.Span span : spans) {
                 formattedLabel.setSpan(span.span, 0, label.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
-            setText(formattedLabel);
+            setText((formattedLabel));// + lunarDate);//LunarCalendar
         }
         // Reset in case it was customized previously
         else {
-            setText(getLabel());
+            setText(getLabel());// + lunarDate);// + "\n" + lunarCalendar.getLunarDate(date.getYear(), Integer.valueOf(date.getMonth() + 1), date.getDay(), false));//LunarCalendar
         }
     }
 }

@@ -20,6 +20,7 @@ import java.util.concurrent.Executors;
 
 import widget.CalendarDay;
 import widget.EventDecorator;
+import widget.LunarCalendar;
 import widget.MaterialCalendarView;
 import widget.OnDateChangedListener;
 import widget.OnMonthChangedListener;
@@ -43,11 +44,10 @@ public class MainActivity extends AppCompatActivity implements OnDateChangedList
         widget.setOnMonthChangedListener(this);
         Calendar calendar = Calendar.getInstance();
         widget.setSelectedDate(calendar.getTime());
-//    周六周日可高亮显示
+        //
         //widget.addDecorators(new HighlightWeekendsDecorator(),
         //       oneDayDecorator);
-        widget.addDecorators(oneDayDecorator);//添加事件小红点
-
+        widget.addDecorators(oneDayDecorator);
         new ApiSimulator().executeOnExecutor(Executors.newSingleThreadExecutor());
     }
 
@@ -73,15 +73,21 @@ public class MainActivity extends AppCompatActivity implements OnDateChangedList
         return super.onOptionsItemSelected(item);
     }
 
+    LunarCalendar lunarCalendar;
 
     @Override
     public void onDateChanged(@NonNull MaterialCalendarView widget, @Nullable CalendarDay date) {
         oneDayDecorator.setDate(date.getDate());
+        lunarCalendar = new LunarCalendar();
         widget.invalidateDecorators();
         if (date == null) {
             tv.setText(null);
         } else {
             tv.setText(FORMATTER.format(date.getDate()));
+            tv.append("\n" + date.getYear());
+            tv.append("\n" + Integer.valueOf(date.getMonth() + 1));
+            tv.append("\n" + date.getDay());
+            tv.append("\n" + lunarCalendar.getLunarDate(date.getYear(), Integer.valueOf(date.getMonth() + 1), date.getDay(), false));
         }
     }
 
@@ -100,13 +106,14 @@ public class MainActivity extends AppCompatActivity implements OnDateChangedList
                 e.printStackTrace();
             }
             Calendar calendar = Calendar.getInstance();
-            calendar.add(Calendar.MONTH, -2);
+            calendar.add(Calendar.MONTH, 0);
+            // calendar.add(Calendar.DATE, 1);
             ArrayList<CalendarDay> dates = new ArrayList<>();
-            for (int i = 0; i < 30; i++) {
-                CalendarDay day = CalendarDay.from(calendar);
-                dates.add(day);
-                calendar.add(Calendar.DATE, 5);
-            }
+            // for (int i = 0; i < 30; i++) {
+            CalendarDay day = CalendarDay.from(calendar);
+            dates.add(day);
+            // calendar.add(Calendar.DATE, 7);
+            // }
 
             return dates;
         }
@@ -119,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements OnDateChangedList
                 return;
             }
             widget.addDecorator(new EventDecorator(Color.RED, calendarDays));
+            tv.append(calendarDays.toString());
         }
     }
 }
