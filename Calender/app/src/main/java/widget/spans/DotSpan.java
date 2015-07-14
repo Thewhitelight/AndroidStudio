@@ -70,9 +70,7 @@ public class DotSpan implements LineBackgroundSpan {
         if (color != 0) {
             paint.setColor(color);
         }
-        canvas.drawCircle((left + right) / 2, bottom+35 , radius, paint);//小红点位置
-        /*String s = lunarCalendar.getLunarDate(2015, 07, 14, false);
-        canvas.drawText(s, 10, 10, paint);*/
+        canvas.drawCircle((left + right) / 2, top - 37, radius, paint);//小红点位置
         paint.setColor(oldColor);
     }
 }

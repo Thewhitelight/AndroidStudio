@@ -1,10 +1,13 @@
 package cn.libery.calender;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,11 +35,19 @@ public class MainActivity extends AppCompatActivity implements OnDateChangedList
     private TextView tv;
     private OneDayDecorator oneDayDecorator = new OneDayDecorator();
     private MaterialCalendarView widget;
+    private CalendarFragment fragment;
+
+    private FragmentManager manager;
+    private ActionBar ab;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // fragment = new CalendarFragment();
+        //manager = getSupportFragmentManager();
+        //manager.beginTransaction().add(R.id.content, fragment, "CalendarFragment").commit();
         tv = (TextView) findViewById(R.id.tv);
         widget = (MaterialCalendarView) findViewById(R.id.calender);
         widget.setShowOtherDates(true);
@@ -44,10 +55,13 @@ public class MainActivity extends AppCompatActivity implements OnDateChangedList
         widget.setOnMonthChangedListener(this);
         Calendar calendar = Calendar.getInstance();
         widget.setSelectedDate(calendar.getTime());
+        ab = getSupportActionBar();
         //
         //widget.addDecorators(new HighlightWeekendsDecorator(),
         //       oneDayDecorator);
+        ab.setTitle(calendar.getTime()+"");
         widget.addDecorators(oneDayDecorator);
+        widget.setDateTextAppearance(R.style.TextAppearance_MaterialCalendarWidget_Date);
         new ApiSimulator().executeOnExecutor(Executors.newSingleThreadExecutor());
     }
 
@@ -67,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements OnDateChangedList
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(getApplicationContext(), NewActivity.class));
             return true;
         }
 
@@ -89,11 +104,13 @@ public class MainActivity extends AppCompatActivity implements OnDateChangedList
             tv.append("\n" + date.getDay());
             tv.append("\n" + lunarCalendar.getLunarDate(date.getYear(), Integer.valueOf(date.getMonth() + 1), date.getDay(), false));
         }
+        widget.invalidate();
     }
 
     @Override
     public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
         Toast.makeText(this, FORMATTER.format(date.getDate()), Toast.LENGTH_SHORT).show();
+        ab.setTitle(date.getYear() + "/" + Integer.valueOf(date.getMonth() + 1));
     }
 
     private class ApiSimulator extends AsyncTask<Void, Void, List<CalendarDay>> {

@@ -215,7 +215,8 @@ public class LunarCalendar {
         if (!isday) {
             // 如果日期为节假日则阴历日期则返回节假日
             // setLeapMonth(leapMonth);
-            for (int i = 0; i < solarHoliday.length; i++) {
+            int sl=solarHoliday.length;
+            for (int i = 0; i < sl; i++) {
                 // 返回公历节假日名称
                 String sd = solarHoliday[i].split(" ")[0]; // 节假日的日期
                 String sdv = solarHoliday[i].split(" ")[1]; // 节假日的名称
@@ -233,8 +234,8 @@ public class LunarCalendar {
                     return sdv;
                 }
             }
-
-            for (int i = 0; i < lunarHoliday.length; i++) {
+            int ll=lunarHoliday.length;
+            for (int i = 0; i < ll; i++) {
                 // 返回农历节假日名称
                 String ld = lunarHoliday[i].split(" ")[0]; // 节假日的日期
                 String ldv = lunarHoliday[i].split(" ")[1]; // 节假日的名称
