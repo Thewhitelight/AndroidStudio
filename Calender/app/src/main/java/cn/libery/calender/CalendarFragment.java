@@ -95,12 +95,11 @@ public class CalendarFragment extends Fragment implements OnDateChangedListener,
         } else {
             Toast.makeText(getActivity(), lunarCalendar.getLunarDate(date.getYear(), Integer.valueOf(date.getMonth() + 1), date.getDay(), false), Toast.LENGTH_SHORT).show();
         }
-        widget.invalidate();
+
     }
 
     @Override
     public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
-        calendarView.removeView(widget);
         Toast.makeText(getActivity(), date.toString(), Toast.LENGTH_SHORT).show();
     }
 
@@ -109,7 +108,7 @@ public class CalendarFragment extends Fragment implements OnDateChangedListener,
         @Override
         protected List<CalendarDay> doInBackground(Void... voids) {
             try {
-                Thread.sleep(2000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

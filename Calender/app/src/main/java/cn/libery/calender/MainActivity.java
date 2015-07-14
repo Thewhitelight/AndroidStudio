@@ -34,11 +34,12 @@ public class MainActivity extends AppCompatActivity implements OnDateChangedList
     private static final DateFormat FORMATTER = SimpleDateFormat.getDateInstance();
     private TextView tv;
     private OneDayDecorator oneDayDecorator = new OneDayDecorator();
-    private MaterialCalendarView widget;
+    private MaterialCalendarView calendarView;
     private CalendarFragment fragment;
-
     private FragmentManager manager;
     private ActionBar ab;
+    private Integer month;
+    private int year;
 
     @Override
 
@@ -49,19 +50,20 @@ public class MainActivity extends AppCompatActivity implements OnDateChangedList
         //manager = getSupportFragmentManager();
         //manager.beginTransaction().add(R.id.content, fragment, "CalendarFragment").commit();
         tv = (TextView) findViewById(R.id.tv);
-        widget = (MaterialCalendarView) findViewById(R.id.calender);
-        widget.setShowOtherDates(true);
-        widget.setOnDateChangedListener(this);
-        widget.setOnMonthChangedListener(this);
+        calendarView = (MaterialCalendarView) findViewById(R.id.calender);
+        calendarView.setShowOtherDates(true);
+        calendarView.setOnDateChangedListener(this);
+        calendarView.setOnMonthChangedListener(this);
         Calendar calendar = Calendar.getInstance();
-        widget.setSelectedDate(calendar.getTime());
+        calendarView.setSelectedDate(calendar.getTime());
         ab = getSupportActionBar();
         //
         //widget.addDecorators(new HighlightWeekendsDecorator(),
         //       oneDayDecorator);
-        ab.setTitle(calendar.getTime()+"");
-        widget.addDecorators(oneDayDecorator);
-        widget.setDateTextAppearance(R.style.TextAppearance_MaterialCalendarWidget_Date);
+        CalendarDay day = new CalendarDay();
+        ab.setTitle(Integer.valueOf(day.getMonth() + 1) + "/" + day.getYear());
+        calendarView.addDecorators(oneDayDecorator);
+        calendarView.setDateTextAppearance(R.style.TextAppearance_MaterialCalendarWidget_Date);
         new ApiSimulator().executeOnExecutor(Executors.newSingleThreadExecutor());
     }
 
@@ -104,13 +106,15 @@ public class MainActivity extends AppCompatActivity implements OnDateChangedList
             tv.append("\n" + date.getDay());
             tv.append("\n" + lunarCalendar.getLunarDate(date.getYear(), Integer.valueOf(date.getMonth() + 1), date.getDay(), false));
         }
-        widget.invalidate();
+        calendarView.invalidate();
     }
 
     @Override
     public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
         Toast.makeText(this, FORMATTER.format(date.getDate()), Toast.LENGTH_SHORT).show();
-        ab.setTitle(date.getYear() + "/" + Integer.valueOf(date.getMonth() + 1));
+        ab.setTitle(Integer.valueOf(date.getMonth() + 1) + "/" + date.getYear());
+        calendarView.invalidate();
+
     }
 
     private class ApiSimulator extends AsyncTask<Void, Void, List<CalendarDay>> {
@@ -118,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements OnDateChangedList
         @Override
         protected List<CalendarDay> doInBackground(Void... voids) {
             try {
-                Thread.sleep(2000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -142,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements OnDateChangedList
             if (isFinishing()) {
                 return;
             }
-            widget.addDecorator(new EventDecorator(Color.RED, calendarDays));
+            calendarView.addDecorator(new EventDecorator(Color.RED, calendarDays));
             tv.append(calendarDays.toString());
         }
     }

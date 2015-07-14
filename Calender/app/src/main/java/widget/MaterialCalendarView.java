@@ -927,7 +927,7 @@ public class MaterialCalendarView extends FrameLayout {
             if (maxDate != null && day.isAfter(maxDate)) {
                 return getCount() - 1;
             }
-            int ms=months.size();
+            int ms = months.size();
             for (int i = 0; i < ms; i++) {
                 CalendarDay month = months.get(i);
                 if (day.getYear() == month.getYear() && day.getMonth() == month.getMonth()) {

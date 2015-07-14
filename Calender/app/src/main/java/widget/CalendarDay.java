@@ -266,7 +266,7 @@ public final class CalendarDay implements Parcelable {
 
     @Override
     public String toString() {
-        return String.format(Locale.US, "CalendarDay{%d-%d-%d}", year, month + 1, day);
+        return String.format(Locale.CHINA, "CalendarDay{%d-%d-%d}", year, month + 1, day);
     }
 
     /*
