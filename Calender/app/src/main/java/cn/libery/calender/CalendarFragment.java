@@ -80,6 +80,7 @@ public class CalendarFragment extends Fragment implements OnDateChangedListener,
         //widget.addDecorators(new HighlightWeekendsDecorator(),
         //       oneDayDecorator);
         calendarView.addDecorators(oneDayDecorator);
+       // calendarView.setTopbarVisible(!calendarView.getTopbarVisible());
         calendarView.setDateTextAppearance(R.style.TextAppearance_MaterialCalendarWidget_Date);
         new ApiSimulator().executeOnExecutor(Executors.newSingleThreadExecutor());
         return view;
@@ -91,7 +92,7 @@ public class CalendarFragment extends Fragment implements OnDateChangedListener,
         lunarCalendar = new LunarCalendar();
         widget.invalidateDecorators();
         if (date == null) {
-            Toast.makeText(getActivity(), "«Î—°‘Ò»’∆⁄", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "NULL", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getActivity(), lunarCalendar.getLunarDate(date.getYear(), Integer.valueOf(date.getMonth() + 1), date.getDay(), false), Toast.LENGTH_SHORT).show();
         }

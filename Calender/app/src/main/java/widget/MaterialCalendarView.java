@@ -45,9 +45,9 @@ public class MaterialCalendarView extends FrameLayout {
     public static final int DEFAULT_TILE_SIZE_DP = 44;
 
     private static final TitleFormatter DEFAULT_TITLE_FORMATTER = new DateFormatTitleFormatter();
-    private final TitleChanger titleChanger;
+    private TitleChanger titleChanger;
 
-    private final TextView title;
+    private TextView title;
     //private final DirectionButton buttonPast;
     //private final DirectionButton buttonFuture;
     private final ViewPager pager;
@@ -130,7 +130,7 @@ public class MaterialCalendarView extends FrameLayout {
 
         setupChildren();
 //
-//        title.setOnClickListener(onClickListener);
+        //       title.setOnClickListener(onClickListener);
 //        buttonPast.setOnClickListener(onClickListener);
 //        buttonFuture.setOnClickListener(onClickListener);
 
@@ -956,6 +956,7 @@ public class MaterialCalendarView extends FrameLayout {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
+            view.invalidate();//huawei phone  viewpager delay
             CalendarDay month = months.get(position);
             MonthView monthView = new MonthView(container.getContext(), month, firstDayOfTheWeek);
 
@@ -998,6 +999,7 @@ public class MaterialCalendarView extends FrameLayout {
             MonthView monthView = (MonthView) object;
             currentViews.remove(monthView);
             container.removeView(monthView);
+
         }
 
         @Override

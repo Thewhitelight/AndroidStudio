@@ -4,8 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.text.style.LineBackgroundSpan;
 
-import widget.LunarCalendar;
-
 /**
  * Span to draw a dot centered under a section of text
  */
@@ -56,7 +54,21 @@ public class DotSpan implements LineBackgroundSpan {
         this.color = color;
     }
 
-    LunarCalendar lunarCalendar;
+    /**
+     * Adjust the little red dot position according to the different screen sizes
+     *
+     * @param canvas
+     * @param paint
+     * @param left
+     * @param right
+     * @param top
+     * @param baseline
+     * @param bottom
+     * @param charSequence
+     * @param start
+     * @param end
+     * @param lineNum
+     */
 
     @Override
     public void drawBackground(
@@ -65,12 +77,11 @@ public class DotSpan implements LineBackgroundSpan {
             CharSequence charSequence,
             int start, int end, int lineNum
     ) {
-        lunarCalendar = new LunarCalendar();
         int oldColor = paint.getColor();
         if (color != 0) {
             paint.setColor(color);
         }
-        canvas.drawCircle((left + right) / 2, top - 37, radius, paint);//–°∫Ïµ„Œª÷√
+        canvas.drawCircle((left + right) / 2, top - 37, radius, paint);//little red dot position
         paint.setColor(oldColor);
     }
 }

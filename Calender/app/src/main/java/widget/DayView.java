@@ -87,7 +87,7 @@ class DayView extends CheckedTextView {
                 newLabel.setSpan(span, 0, newLabel.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
         }
-        setText(newLabel);// + lunarDate);//LunarCalendar
+        setText(newLabel);
     }
 
     public
@@ -207,11 +207,11 @@ class DayView extends CheckedTextView {
             for (DayViewFacade.Span span : spans) {
                 formattedLabel.setSpan(span.span, 0, label.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
-            setText((formattedLabel));// + lunarDate);//LunarCalendar
+            setText((formattedLabel));
         }
         // Reset in case it was customized previously
         else {
-            setText(getLabel());// + lunarDate);// + "\n" + lunarCalendar.getLunarDate(date.getYear(), Integer.valueOf(date.getMonth() + 1), date.getDay(), false));//LunarCalendar
+            setText(getLabel());
         }
     }
 }
