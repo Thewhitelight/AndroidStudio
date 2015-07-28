@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements OnDateChangedList
                 calendarView.setSelectedDate(day);
                 // v.invalidate();
                 //calendarView.invalidate();
-                calendarView.invalidateDecorators();
+                //calendarView.invalidateDecorators();
                 //  calendarView.setCurrentDate(day);
             }
         });

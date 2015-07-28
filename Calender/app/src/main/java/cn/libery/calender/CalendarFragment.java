@@ -6,10 +6,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.text.DateFormat;
@@ -26,6 +30,8 @@ import widget.MaterialCalendarView;
 import widget.OnDateChangedListener;
 import widget.OnMonthChangedListener;
 import widget.OneDayDecorator;
+
+import static cn.libery.calender.R.color.error_color;
 
 /**
  * Created by Libery on 2015/7/14.
@@ -76,11 +82,61 @@ public class CalendarFragment extends Fragment implements OnDateChangedListener,
         calendarView.setOnDateChangedListener(this);
         Calendar calendar = Calendar.getInstance();
         calendarView.setSelectedDate(calendar.getTime());
+        final TextInputLayout inputLayout = (TextInputLayout) view.findViewById(R.id.textInput);
+        inputLayout.setHint("账号");
+        EditText edit = inputLayout.getEditText();
+        edit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 5) {
+                    inputLayout.setErrorEnabled(true);
+                    inputLayout.setError("账号长度不能超过5");
+                } else {
+                    inputLayout.setErrorEnabled(false);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        final TextInputLayout inputLayout2 = (TextInputLayout) view.findViewById(R.id.textInput2);
+        inputLayout2.setHint("密码");
+        EditText edit2 = inputLayout2.getEditText();
+        edit2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 10) {
+                    inputLayout2.setErrorEnabled(true);
+                    inputLayout2.setError("密码长度不能超过10");
+                } else {
+                    inputLayout2.setErrorEnabled(false);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         //
         //widget.addDecorators(new HighlightWeekendsDecorator(),
         //       oneDayDecorator);
         calendarView.addDecorators(oneDayDecorator);
-       // calendarView.setTopbarVisible(!calendarView.getTopbarVisible());
+        // calendarView.setTopbarVisible(!calendarView.getTopbarVisible());
         calendarView.setDateTextAppearance(R.style.TextAppearance_MaterialCalendarWidget_Date);
         new ApiSimulator().executeOnExecutor(Executors.newSingleThreadExecutor());
         return view;

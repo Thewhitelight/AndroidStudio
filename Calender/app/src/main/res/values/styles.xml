@@ -2,7 +2,8 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+        <!-- textInput color-->
+        <item name="colorAccent">#0ac</item>
     </style>
 
     <style name="TextAppearance.MaterialCalendarWidget.Header" parent="android:TextAppearance">
@@ -16,5 +17,6 @@
 
     <style name="TextAppearance.MaterialCalendarWidget.WeekDay" parent="android:TextAppearance">
         <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/mcv_text_date_light</item>
     </style>
 </resources>
