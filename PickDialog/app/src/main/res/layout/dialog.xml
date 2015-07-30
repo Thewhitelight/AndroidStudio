@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_location"
+        android:layout_width="290dp"
+        android:layout_height="59dp"
+        android:paddingLeft="22dp"
+        android:gravity="center|left"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="290dp"
+        android:layout_height="2dp"
+        android:background="@drawable/line" />
+
+    <LinearLayout
+        android:layout_width="290dp"
+        android:layout_height="154dp"
+        android:orientation="horizontal">
+
+        <cn.libery.pickdialog.widget.WheelView
+            android:id="@+id/id_province"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40dp"
+            android:layout_weight="1" />
+
+        <cn.libery.pickdialog.widget.WheelView
+            android:id="@+id/id_city"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="40dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:text="确定" />
+</LinearLayout>
