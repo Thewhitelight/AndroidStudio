@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,53 +72,33 @@ public class DateFragment extends android.support.v4.app.DialogFragment implemen
         }
 
         yearList = new ArrayList<>();
-        for (int j = 1972; j <= 2050; j++) {
+        for (int j = 1970; j <= 2050; j++) {
             YearModel province = new YearModel();
             province.setName(j + "");
-            Log.i("year", j + "");
-            if (j % 4 == 0.0) {
-                Log.i("run year", "run year");
-                List<MonthModel> listCity = new ArrayList<>();
-                for (int i = 1; i <= 12; i++) {
-                    MonthModel city = new MonthModel();
-                    city.setName(i + "");
-                    if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) {
-                        city.setDistrictList(listDis2);
-                    }
-                    if (i == 2) {
-                        Log.i("29", "29");
-                        city.setDistrictList(listDis4);
-                    }
-                    if (i == 4 || i == 6 || i == 9 || i == 11) {
-                        city.setDistrictList(listDis);
-                    }
-                    listCity.add(city);
+            List<MonthModel> listCity = new ArrayList<>();
+            for (int i = 1; i <= 12; i++) {
+                MonthModel city = new MonthModel();
+                city.setName(i + "");
+                if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) {
+                    city.setDistrictList(listDis2);
                 }
-                province.setCityList(listCity);
-            } else {
-                Log.i("not run year", "not run year");
-                List<MonthModel> listCity2 = new ArrayList<>();
-                for (int i = 1; i <= 12; i++) {
-                    MonthModel city2 = new MonthModel();
-                    city2.setName(i + "");
-                    if (i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) {
-                        city2.setDistrictList(listDis2);
-                    }
-                    if (i == 2) {
-                        Log.i("28", "28");
-                        city2.setDistrictList(listDis3);
-                    }
-                    if (i == 4 || i == 6 || i == 9 || i == 11) {
-                        city2.setDistrictList(listDis);
-                    }
-                    listCity2.add(city2);
-                }
-                province.setCityList(listCity2);
-            }
+                if (i == 2) {
+                    // if (j % 4 != 0) {
+                    city.setDistrictList(listDis3);
+                    //  } else {
+                    city.setDistrictList(listDis4);
+                    // }
 
+                }
+                if (i == 4 || i == 6 || i == 9 || i == 11) {
+                    city.setDistrictList(listDis);
+                }
+                listCity.add(city);
+            }
+            province.setCityList(listCity);
             yearList.add(province);
         }
-        //Log.i("1972.2.29", yearList.get(2).getCityList().get(1).getDistrictList().get(28).getName());
+        Log.i("1972.2.29", yearList.get(2).getCityList().get(1).getDistrictList().get(28).getName());
         if (yearList != null && !yearList.isEmpty()) {
             mCurrentYear = yearList.get(0).getName();
             List<MonthModel> cityList = yearList.get(0).getCityList();
@@ -144,7 +125,7 @@ public class DateFragment extends android.support.v4.app.DialogFragment implemen
                     DayModel dayModel = new DayModel(dayList.get(k).getName());
                     dayArray[k] = dayModel;
                     dayNameArray[k] = dayModel.getName();
-                    Log.i("dayNameArray", dayNameArray[k] + "");
+                    //Log.i("dayNameArray", dayNameArray[k] + "");
                 }
                 mDayMap.put(monthNames[j], dayNameArray);
             }
@@ -211,12 +192,15 @@ public class DateFragment extends android.support.v4.app.DialogFragment implemen
         mCurrentMonth = mMonthMap.get(mCurrentYear)[pCurrent];
         String[] mDay = mDayMap.get(mCurrentMonth);
         mCurrentDay = mDayMap.get(mCurrentMonth)[0];
-        //mCurrentDistrictName=mCitisDatasMap.get(mCurrentProviceName)[pCurrent];
         if (mDay == null) {
             mDay = new String[]{""};
-        }
-        for (int x = 0; x < mDay.length; x++) {
-            Log.i("updateDay", mDay[x]);
+        } else {
+
+            if (Integer.parseInt(mCurrentYear) % 4 != 0) {
+                List list = new ArrayList(Arrays.asList(mDay));
+                list.remove(28);
+                mDay = (String[]) list.toArray(new String[list.size()]);
+            }
         }
 
         mViewDay.setViewAdapter(new ArrayWheelAdapter<>(getActivity(), mDay));

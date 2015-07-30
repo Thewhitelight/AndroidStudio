@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.AssetManager;
 
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +29,7 @@ public class FragmentBase extends android.support.v4.app.DialogFragment {
     /**
      * key - 省 value - 市
      */
-    protected Map<String, String[]> mCitisDatasMap = new HashMap<String, String[]>();
+    protected Map<String, String[]> mCitisDatasMap = new HashMap<>();
     /**
      * 当前省的名称
      */
@@ -58,15 +57,6 @@ public class FragmentBase extends android.support.v4.app.DialogFragment {
             input.close();
             // 获取解析出来的数据
             provinceList = handler.getDataList();
-            provinceList = new ArrayList<>();
-            ProvinceModel provinceModel = new ProvinceModel();
-            CityModel cityModel = new CityModel();
-            provinceModel.setName("浙江");
-            cityModel.setName("杭州");
-            List<CityModel> list = new ArrayList<>();
-            list.add(cityModel);
-            provinceModel.setCityList(list);
-            provinceList.add(provinceModel);
             // */ 初始化默认选中的省、市
             if (provinceList != null && !provinceList.isEmpty()) {
                 mCurrentProviceName = provinceList.get(0).getName();
