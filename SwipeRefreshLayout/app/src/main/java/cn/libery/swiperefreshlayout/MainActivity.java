@@ -15,8 +15,10 @@ import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 
+import cn.libery.swiperefreshlayout.SwipeLayout.OnLoadListener;
 
-public class MainActivity extends ActionBarActivity implements OnRefreshListener, SwipeLayout.OnLoadListener {
+
+public class MainActivity extends ActionBarActivity implements OnRefreshListener, OnLoadListener {
     private SwipeLayout swipeRefreshLayout;
     private ListView listView;
     private String[] imgUrls;
