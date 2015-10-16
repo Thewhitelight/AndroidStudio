@@ -11,7 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,11 +36,13 @@ import cn.libery.multiphotopick.MainActivity;
 import cn.libery.multiphotopick.R;
 
 
-public class PhotoPickActivity extends ActionBarActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+public class PhotoPickActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     public static final String EXTRA_MAX = "EXTRA_MAX";
     public static final String EXTRA_PICKED = "EXTRA_PICKED"; // mPickData
     private static final String RESTORE_FILEURI = "fileUri";
+    private Uri fileUri;
+
     public static DisplayImageOptions optionsImage = new DisplayImageOptions
             .Builder()
             .showImageOnLoading(R.drawable.ic_default_image)
@@ -58,7 +60,7 @@ public class PhotoPickActivity extends ActionBarActivity implements LoaderManage
     private final String CameraItem = "CameraItem";
     MenuItem mMenuItem;
     int mFolderId = 0;
-    private int mMaxPick = MainActivity.PHOTO_MAX_COUNT;
+    private int mMaxPick ;//= MainActivity.PHOTO_MAX_COUNT;
     private LayoutInflater mInflater;
     private TextView mFoldName;
     private View mListViewGroup;
@@ -114,7 +116,6 @@ public class PhotoPickActivity extends ActionBarActivity implements LoaderManage
             if (mPickData.size() == 0) {
                 return;
             }
-
             Intent intent = new Intent(PhotoPickActivity.this, PhotoPickDetailActivity.class);
             intent.putExtra(PhotoPickDetailActivity.FOLDER_NAME, mFolderAdapter.getSelect());
             intent.putExtra(PhotoPickDetailActivity.PICK_DATA, mPickData);
@@ -138,7 +139,6 @@ public class PhotoPickActivity extends ActionBarActivity implements LoaderManage
             getLoaderManager().initLoader(mFolderId, null, PhotoPickActivity.this);
         }
     };
-    private Uri fileUri;
 
     @SuppressWarnings("unchecked")
     @Override
@@ -150,7 +150,7 @@ public class PhotoPickActivity extends ActionBarActivity implements LoaderManage
         actionBar.setTitle("图片");
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        mMaxPick = getIntent().getIntExtra(EXTRA_MAX, 6);
+        mMaxPick = getIntent().getIntExtra(EXTRA_MAX, 3);
         Object extraPicked = getIntent().getSerializableExtra(EXTRA_PICKED);
 
         if (extraPicked != null) {
@@ -350,8 +350,8 @@ public class PhotoPickActivity extends ActionBarActivity implements LoaderManage
             }
         } else if (requestCode == RESULT_CAMERA) {
             if (resultCode == RESULT_OK) {
-                ImageInfo itme = new ImageInfo(fileUri.toString());
-                mPickData.add(itme);
+                ImageInfo item = new ImageInfo(fileUri.toString());
+                mPickData.add(item);
                 send();
             }
         }

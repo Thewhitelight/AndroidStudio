@@ -9,7 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import cn.libery.multiphotopick.MainActivity;
 import cn.libery.multiphotopick.R;
 
-public class PhotoPickDetailActivity extends ActionBarActivity {
+public class PhotoPickDetailActivity extends AppCompatActivity {
 
     public static final String PICK_DATA = "PICK_DATA";
     public static final String ALL_DATA = "ALL_DATA";
@@ -35,7 +35,7 @@ public class PhotoPickDetailActivity extends ActionBarActivity {
     private ViewPager mViewPager;
     private CheckBox mCheckBox;
 
-    private int mMaxPick = MainActivity.PHOTO_MAX_COUNT;
+    private int mMaxPick ;//= MainActivity.PHOTO_MAX_COUNT;
     private MenuItem mMenuSend;
     private final String actionbarTitle = "%d/%d";
     Cursor mCursor;
@@ -211,7 +211,6 @@ public class PhotoPickDetailActivity extends ActionBarActivity {
         public Fragment getItem(int position) {
             ImagePagerFragment fragment = new ImagePagerFragment();
             Bundle bundle = new Bundle();
-
             String path = getImagePath(position);
             bundle.putString("uri", ImageInfo.pathAddPreFix(path));
             fragment.setArguments(bundle);

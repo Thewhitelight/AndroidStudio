@@ -10,12 +10,11 @@ import java.util.Date;
 
 public class CameraPhotoUtil {
     public static Uri getOutputMediaFileUri() {
-        File mediaStorageDir = new File(
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),
-                "MyCameraApp");
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                ,"Date");
         if (!mediaStorageDir.exists()) {
             if (!mediaStorageDir.mkdirs()) {
-                Log.d("MyCameraApp", "failed to create directory");
+                Log.d("Date", "failed to create directory");
                 return null;
             }
         }
