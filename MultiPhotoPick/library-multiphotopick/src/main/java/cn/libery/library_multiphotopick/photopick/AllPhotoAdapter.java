@@ -1,12 +1,11 @@
-package cn.libery.multiphotopick.photopick;
+package cn.libery.library_multiphotopick.photopick;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.view.View;
 import android.view.ViewGroup;
 
-import cn.libery.multiphotopick.MainActivity;
-import cn.libery.multiphotopick.R;
+import cn.libery.library_multiphotopick.R;
 
 public class AllPhotoAdapter extends GridPhotoAdapter {
 
@@ -67,7 +66,7 @@ public class AllPhotoAdapter extends GridPhotoAdapter {
         } else {
             if (convertView == null) {
                 convertView = mInflater.inflate(R.layout.photopick_gridlist_item_camera2, parent, false);
-                convertView.getLayoutParams().height = MainActivity.width / 3;
+                convertView.getLayoutParams().height = PhotoPickActivity.width / 3;
                 convertView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

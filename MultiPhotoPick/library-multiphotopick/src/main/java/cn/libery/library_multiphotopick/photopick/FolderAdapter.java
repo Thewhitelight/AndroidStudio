@@ -1,4 +1,4 @@
-package cn.libery.multiphotopick.photopick;
+package cn.libery.library_multiphotopick.photopick;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +11,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
 
-import cn.libery.multiphotopick.R;
+import cn.libery.library_multiphotopick.R;
 
 public class FolderAdapter extends BaseAdapter {
 

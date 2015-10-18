@@ -1,53 +1,14 @@
-package cn.libery.multiphotopick.photopick;
+package cn.libery.library_multiphotopick.photopick;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.ClipboardManager;
 import android.content.ContentUris;
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.AssetManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.text.Editable;
-import android.text.Html;
-import android.text.Spannable;
-import android.text.style.ImageSpan;
-import android.text.style.QuoteSpan;
-import android.text.style.URLSpan;
-import android.util.Log;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
-import android.webkit.WebView;
-import android.widget.EditText;
-import android.widget.ImageView;
-
-import org.json.JSONObject;
-import org.xml.sax.XMLReader;
-
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.text.DecimalFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 /**
  * Created by cc191954 on 14-8-23.

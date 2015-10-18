@@ -1,4 +1,4 @@
-package cn.libery.multiphotopick.photopick;
+package cn.libery.library_multiphotopick.photopick;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,8 +18,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import cn.libery.multiphotopick.MainActivity;
-import cn.libery.multiphotopick.R;
+import cn.libery.library_multiphotopick.R;
 
 public class PhotoPickDetailActivity extends AppCompatActivity {
 
@@ -35,7 +34,7 @@ public class PhotoPickDetailActivity extends AppCompatActivity {
     private ViewPager mViewPager;
     private CheckBox mCheckBox;
 
-    private int mMaxPick ;//= MainActivity.PHOTO_MAX_COUNT;
+    private int mMaxPick;//= MainActivity.PHOTO_MAX_COUNT;
     private MenuItem mMenuSend;
     private final String actionbarTitle = "%d/%d";
     Cursor mCursor;

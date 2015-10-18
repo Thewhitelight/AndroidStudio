@@ -22,8 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".photopick.PhotoPickActivity" />
-        <activity android:name=".photopick.PhotoPickDetailActivity" />
+        <activity
+            android:name="cn.libery.library_multiphotopick.photopick.PhotoPickActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="cn.libery.library_multiphotopick.photopick.PhotoPickDetailActivity" />
     </application>
 
 </manifest>

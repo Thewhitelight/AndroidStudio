@@ -1,4 +1,4 @@
-package cn.libery.multiphotopick.photopick;
+package cn.libery.library_multiphotopick.photopick;
 
 import android.content.Context;
 import android.graphics.Bitmap;

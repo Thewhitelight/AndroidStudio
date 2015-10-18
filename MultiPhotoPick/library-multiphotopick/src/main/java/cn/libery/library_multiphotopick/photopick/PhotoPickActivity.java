@@ -1,4 +1,4 @@
-package cn.libery.multiphotopick.photopick;
+package cn.libery.library_multiphotopick.photopick;
 
 import android.app.Activity;
 import android.app.LoaderManager;
@@ -32,12 +32,11 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-import cn.libery.multiphotopick.MainActivity;
-import cn.libery.multiphotopick.R;
+import cn.libery.library_multiphotopick.R;
 
 
 public class PhotoPickActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
-
+    public static int width;
     public static final String EXTRA_MAX = "EXTRA_MAX";
     public static final String EXTRA_PICKED = "EXTRA_PICKED"; // mPickData
     private static final String RESTORE_FILEURI = "fileUri";
@@ -60,7 +59,7 @@ public class PhotoPickActivity extends AppCompatActivity implements LoaderManage
     private final String CameraItem = "CameraItem";
     MenuItem mMenuItem;
     int mFolderId = 0;
-    private int mMaxPick ;//= MainActivity.PHOTO_MAX_COUNT;
+    private int mMaxPick;//= MainActivity.PHOTO_MAX_COUNT;
     private LayoutInflater mInflater;
     private TextView mFoldName;
     private View mListViewGroup;
@@ -140,12 +139,13 @@ public class PhotoPickActivity extends AppCompatActivity implements LoaderManage
         }
     };
 
+
     @SuppressWarnings("unchecked")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_pick);
-
+        width = getResources().getDisplayMetrics().widthPixels;
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("图片");
         actionBar.setDisplayHomeAsUpEnabled(true);

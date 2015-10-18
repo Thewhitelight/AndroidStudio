@@ -1,4 +1,4 @@
-package cn.libery.multiphotopick.photopick;
+package cn.libery.library_multiphotopick.photopick;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -11,10 +11,8 @@ import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import cn.libery.multiphotopick.MainActivity;
-import cn.libery.multiphotopick.R;
-import cn.libery.multiphotopick.photopick.PhotoPickActivity.GridViewCheckTag;
-
+import cn.libery.library_multiphotopick.R;
+import cn.libery.library_multiphotopick.photopick.PhotoPickActivity.GridViewCheckTag;
 
 public class GridPhotoAdapter extends CursorAdapter {
 
@@ -34,7 +32,7 @@ public class GridPhotoAdapter extends CursorAdapter {
         mInflater = LayoutInflater.from(context);
         mActivity = activity;
         int spacePix = context.getResources().getDimensionPixelSize(R.dimen.pickimage_gridlist_item_space);
-        itemWidth = (MainActivity.width - spacePix * 4) / 3;
+        itemWidth = (PhotoPickActivity.width - spacePix * 4) / 3;
     }
 
     @Override

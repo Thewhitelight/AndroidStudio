@@ -1,4 +1,4 @@
-package cn.libery.multiphotopick.photopick;
+package cn.libery.library_multiphotopick.photopick;
 
 public class ImageInfoExtra {
     private ImageInfo mImageInfo;

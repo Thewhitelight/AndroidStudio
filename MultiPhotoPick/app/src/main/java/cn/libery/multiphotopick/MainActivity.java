@@ -19,12 +19,13 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import cn.libery.multiphotopick.photopick.ImageInfo;
-import cn.libery.multiphotopick.photopick.PhotoOperate;
-import cn.libery.multiphotopick.photopick.PhotoPickActivity;
+import cn.libery.library_multiphotopick.photopick.ImageInfo;
+import cn.libery.library_multiphotopick.photopick.PhotoOperate;
+import cn.libery.library_multiphotopick.photopick.PhotoPickActivity;
+
 
 public class MainActivity extends AppCompatActivity {
-    public static int width;
+    //public static int width;
     public static int PHOTO_MAX_COUNT = 3;
     public static final int RESULT_REQUEST_PICK_PHOTO = 1003;
     ArrayList<PhotoData> mData = new ArrayList<>();
@@ -44,19 +45,20 @@ public class MainActivity extends AppCompatActivity {
         image2 = (ImageView) findViewById(R.id.image2);
         image3 = (ImageView) findViewById(R.id.image3);
         imageViews = new ImageView[]{image1, image2, image3};
-        width = getResources().getDisplayMetrics().widthPixels;
+        //width = getResources().getDisplayMetrics().widthPixels;
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, PhotoPickActivity.class);
-                intent.putExtra(PhotoPickActivity.EXTRA_MAX, PHOTO_MAX_COUNT);
+                //Intent intent = new Intent(MainActivity.this, PhotoPickActivity.class);
+                Intent intent = new Intent(MainActivity.this, cn.libery.library_multiphotopick.photopick.PhotoPickActivity.class);
+                intent.putExtra("EXTRA_MAX", PHOTO_MAX_COUNT);
 
                 ArrayList<ImageInfo> pickImages = new ArrayList<>();
                 for (PhotoData item : mData) {
                     pickImages.add(item.mImageinfo);
                 }
-                intent.putExtra(PhotoPickActivity.EXTRA_PICKED, pickImages);
+                intent.putExtra("EXTRA_PICKED", pickImages);
                 startActivityForResult(intent, RESULT_REQUEST_PICK_PHOTO);
             }
         });

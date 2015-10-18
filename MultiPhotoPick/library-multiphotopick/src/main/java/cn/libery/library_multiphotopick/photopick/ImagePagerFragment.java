@@ -1,4 +1,4 @@
-package cn.libery.multiphotopick.photopick;
+package cn.libery.library_multiphotopick.photopick;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +9,8 @@ import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import cn.libery.multiphotopick.R;
+
+import cn.libery.library_multiphotopick.R;
 
 
 public class ImagePagerFragment extends Fragment {
